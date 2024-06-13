@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.sql.Connection;
 import java.net.URL;
@@ -50,6 +51,8 @@ public class StudentController implements Initializable {
     @FXML
     private TableView<Student> table;
 
+    int id = 0;
+
     @FXML
     private TextField uCourse;
 
@@ -59,24 +62,76 @@ public class StudentController implements Initializable {
     @FXML
     private TextField uLname;
 
+    void clear() {
+        uFname.setText(null);
+        uLname.setText(null);
+        uCourse.setText(null);
+        btnSave.setDisable(false);
+    }
+
     @FXML
     void clearField(ActionEvent event) {
-
+        clear();
     }
 
     @FXML
     void createStudent(ActionEvent event) {
+        String query = "insert into students(FirstName, LastName, COURSE) values(?, ?, ?)";
+        con = DB_Connection.getConnection();
+        try {
+            st = con.prepareStatement(query);
+            st.setString(1, uFname.getText());
+            st.setString(2, uLname.getText());
+            st.setString(3, uCourse.getText());
+            st.executeUpdate();
+            clear();
+            showStudents();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @FXML
+    void getData(MouseEvent event) {
+        Student student = table.getSelectionModel().getSelectedItem();
+        id = student.getId();
+        uFname.setText(student.getFirstName());
+        uLname.setText(student.getLastName());
+        uCourse.setText(student.getCourse());
+        btnSave.setDisable(true);
     }
 
     @FXML
     void deleteStudent(ActionEvent event) {
-
+        String delete = "delete from students where id = ?";
+        con = DB_Connection.getConnection();
+        try {
+            st = con.prepareStatement(delete);
+            st.setInt(1, id);
+            st.executeUpdate();
+            showStudents();
+            clear();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void updateStudent(ActionEvent event) {
-
+        String update = "update students set FirstName = ?, LastName = ?, Course = ? where id = ?";
+        con = DB_Connection.getConnection();
+        try {
+            st = con.prepareStatement(update);
+            st.setString(1, uFname.getText());
+            st.setString(2, uLname.getText());
+            st.setString(3, uCourse.getText());
+            st.setInt(4, id);
+            st.executeUpdate();
+            clear();
+            showStudents();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

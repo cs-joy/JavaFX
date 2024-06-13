@@ -22,7 +22,7 @@
             <TextField fx:id="uCourse" />
          </children>
       </VBox>
-      <TableView fx:id="table" layoutX="379.0" layoutY="110.0" prefHeight="202.0" prefWidth="366.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
+      <TableView fx:id="table" layoutX="379.0" layoutY="110.0" onMouseClicked="#getData" prefHeight="202.0" prefWidth="366.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
         <columns>
           <TableColumn fx:id="colid" prefWidth="53.0" text="ID" />
           <TableColumn fx:id="colFname" prefWidth="113.0" text="First Name" />
