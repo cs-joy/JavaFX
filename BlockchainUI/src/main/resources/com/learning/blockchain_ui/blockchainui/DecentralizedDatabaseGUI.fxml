@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<?import java.lang.String?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.learning.blockchain_ui.blockchainui.DecentralizedDatabaseController"
+          alignment="center" hgap="10" vgap="10">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- MetaMask Connection -->
+    <Label text="MetaMask Connection" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"
+           style="-fx-font-weight: bold;"/>
+    <Button text="Connect MetaMask" onAction="#connectMetaMask" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label fx:id="walletStatusLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <!-- CRUD Operations -->
+    <Label text="CRUD Operations" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"
+           style="-fx-font-weight: bold;"/>
+
+    <Label text="Key:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <TextField fx:id="keyField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Label text="Content:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextArea fx:id="contentArea" GridPane.columnIndex="1" GridPane.rowIndex="4" prefRowCount="3"/>
+
+    <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+        <Button text="Create" onAction="#createData"/>
+        <Button text="Read" onAction="#readData"/>
+        <Button text="Update" onAction="#updateData"/>
+        <Button text="Delete" onAction="#deleteData"/>
+    </HBox>
+
+    <!-- Permissions -->
+    <Label text="Permissions" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2"
+           style="-fx-font-weight: bold;"/>
+
+    <Label text="User Address:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+    <TextField fx:id="userAddressField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+    <Label text="Permission Type:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+    <ComboBox fx:id="permissionTypeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="8">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Create"/>
+                <String fx:value="Read"/>
+            </FXCollections>
+        </items>
+        <value>
+            <String fx:value="Create"/>
+        </value>
+    </ComboBox>
+
+    <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="2">
+        <Button text="Grant Permission" onAction="#grantPermission"/>
+        <Button text="Revoke Permission" onAction="#revokePermission"/>
+    </HBox>
+
+    <!-- Result Area -->
+    <Label text="Result:" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+    <TextArea fx:id="resultArea" GridPane.columnIndex="0" GridPane.rowIndex="11" GridPane.columnSpan="2"
+              editable="false" prefRowCount="5"/>
+</GridPane>

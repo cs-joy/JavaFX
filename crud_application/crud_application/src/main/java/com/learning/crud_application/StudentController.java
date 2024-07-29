@@ -49,6 +49,9 @@ public class StudentController implements Initializable {
     private TableColumn<Student, Integer> colid;
 
     @FXML
+    private TableColumn<Student, String> colBatch;
+
+    @FXML
     private TableView<Student> table;
 
     int id = 0;
@@ -62,10 +65,15 @@ public class StudentController implements Initializable {
     @FXML
     private TextField uLname;
 
+    @FXML
+    private TextField uBatch;
+
     void clear() {
         uFname.setText(null);
         uLname.setText(null);
         uCourse.setText(null);
+        uBatch.setText(null);
+
         btnSave.setDisable(false);
     }
 
@@ -76,13 +84,15 @@ public class StudentController implements Initializable {
 
     @FXML
     void createStudent(ActionEvent event) {
-        String query = "insert into students(FirstName, LastName, COURSE) values(?, ?, ?)";
+        String query = "insert into students_info(FirstName, LastName, COURSE, Batch) values(?, ?, ?, ?)";
         con = DB_Connection.getConnection();
         try {
             st = con.prepareStatement(query);
             st.setString(1, uFname.getText());
             st.setString(2, uLname.getText());
             st.setString(3, uCourse.getText());
+            st.setString(4, uBatch.getText());
+
             st.executeUpdate();
             clear();
             showStudents();
@@ -98,12 +108,14 @@ public class StudentController implements Initializable {
         uFname.setText(student.getFirstName());
         uLname.setText(student.getLastName());
         uCourse.setText(student.getCourse());
+        uBatch.setText(student.getBatch());
+
         btnSave.setDisable(true);
     }
 
     @FXML
     void deleteStudent(ActionEvent event) {
-        String delete = "delete from students where id = ?";
+        String delete = "delete from students_info where id = ?";
         con = DB_Connection.getConnection();
         try {
             st = con.prepareStatement(delete);
@@ -118,14 +130,16 @@ public class StudentController implements Initializable {
 
     @FXML
     void updateStudent(ActionEvent event) {
-        String update = "update students set FirstName = ?, LastName = ?, Course = ? where id = ?";
+        String update = "update students_info set FirstName = ?, LastName = ?, Course = ?, Batch = ? where id = ?";
         con = DB_Connection.getConnection();
         try {
             st = con.prepareStatement(update);
             st.setString(1, uFname.getText());
             st.setString(2, uLname.getText());
             st.setString(3, uCourse.getText());
-            st.setInt(4, id);
+            st.setString(4, uBatch.getText());
+            st.setInt(5, id);
+
             st.executeUpdate();
             clear();
             showStudents();
@@ -142,7 +156,7 @@ public class StudentController implements Initializable {
     public ObservableList<Student> getStudents() {
         ObservableList<Student> students = FXCollections.observableArrayList();
 
-        String query = "select * from students";
+        String query = "select * from students_info";
         con = DB_Connection.getConnection();
         try {
             st = con.prepareStatement(query);
@@ -153,6 +167,8 @@ public class StudentController implements Initializable {
                 student.setFirstName(rs.getString("FirstName"));
                 student.setLastName(rs.getString("LastName"));
                 student.setCourse(rs.getString("course"));
+                student.setBatch(rs.getString("Batch"));
+
                 students.add(student);
             }
         } catch (SQLException e) {
@@ -170,5 +186,6 @@ public class StudentController implements Initializable {
         colFname.setCellValueFactory(new PropertyValueFactory<Student, String>("FirstName"));
         colLname.setCellValueFactory(new PropertyValueFactory<Student, String>("LastName"));
         colCourse.setCellValueFactory(new PropertyValueFactory<Student, String>("course"));
+        colBatch.setCellValueFactory(new PropertyValueFactory<Student, String>("Batch"));
     }
 }

@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DB_Connection {
-    static String user = "username";
-    static String password = "password";
+    static String user = "root";
+    static String password = "1024";
     static String url = "jdbc:mysql://localhost/crud_app_javaFX";
     static String driver = "com.mysql.cj.jdbc.Driver";
 

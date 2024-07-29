@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="504.0" prefWidth="757.0" styleClass="form_container" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.learning.crud_application.StudentController">
    <children>
-      <VBox layoutX="14.0" layoutY="52.0" prefHeight="300.0" prefWidth="300.0" spacing="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="110.0">
+      <VBox layoutX="14.0" layoutY="60.0" prefHeight="330.0" prefWidth="300.0" spacing="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="60.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
             <TextField fx:id="uFname" />
@@ -20,14 +20,17 @@
             <TextField fx:id="uLname" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course" />
             <TextField fx:id="uCourse" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Batch" />
+            <TextField fx:id="uBatch" />
          </children>
       </VBox>
-      <TableView fx:id="table" layoutX="379.0" layoutY="110.0" onMouseClicked="#getData" prefHeight="202.0" prefWidth="366.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
+      <TableView fx:id="table" layoutX="378.0" layoutY="60.0" onMouseClicked="#getData" prefHeight="341.0" prefWidth="425.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="60.0">
         <columns>
           <TableColumn fx:id="colid" prefWidth="53.0" text="ID" />
           <TableColumn fx:id="colFname" prefWidth="113.0" text="First Name" />
-            <TableColumn fx:id="colLname" prefWidth="75.0" text="Last Name" />
-            <TableColumn fx:id="colCourse" prefWidth="124.0" text="Course" />
+            <TableColumn fx:id="colLname" prefWidth="82.0" text="Last Name" />
+            <TableColumn fx:id="colCourse" prefWidth="131.0" text="Course" />
+            <TableColumn fx:id="colBatch" prefWidth="44.0" text="Batch" />
         </columns>
       </TableView>
       <Label alignment="CENTER" layoutX="255.0" layoutY="25.0" prefHeight="35.0" prefWidth="245.0" styleClass="title" text="CRUD APPLICATION" />

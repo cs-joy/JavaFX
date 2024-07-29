@@ -6,7 +6,8 @@ create table students (
     id int auto_increment primary key,
     FirstName varchar(20) not null,
     LastName varchar(20) not null,
-    COURSE varchar(255) not null
+    COURSE varchar(255) not null,
+    Batch varchar(255) not null
 );
 
-insert into students(FirstName, LastName, COURSE) values("John", "Doe", "Java");
+insert into students(FirstName, LastName, COURSE, Batch) values("John", "Doe", "Java", "63th");

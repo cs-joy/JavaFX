@@ -5,6 +5,15 @@ public class Student {
     private String firstName;
     private String lastName;
     private String course;
+    private String batch;
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
 
     public int getId() {
         return id;

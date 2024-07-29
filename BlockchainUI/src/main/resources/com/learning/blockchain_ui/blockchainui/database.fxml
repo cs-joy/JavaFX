@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.learning.blockchain_ui.blockchainui." spacing="10" padding="10">
+    <Label text="Decentralized Database" />
+
+    <TextField fx:id="idField" promptText="ID" />
+    <TextField fx:id="contentField" promptText="Content" />
+
+    <Button text="Add Data" onAction="#handleAddData" />
+    <Button text="Update Data" onAction="#handleUpdateData" />
+    <Button text="Delete Data" onAction="#handleDeleteData" />
+    <Button text="Get Data" onAction="#handleGetData" />
+
+    <TextArea fx:id="outputArea" editable="false" />
+</VBox>
